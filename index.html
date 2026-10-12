@@ -1,435 +1,879 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABK Game</title>
+
+<title>ABK Hub</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
+
+/* =========================
+   BODY
+========================= */
+
+html,
+body{
+
     width:100%;
     height:100%;
+
     overflow:hidden;
+
     font-family:Arial,sans-serif;
+
     background:#080a12;
+
     color:#fff;
 }
 
-/* MAIN DASHBOARD */
+
+/* =========================
+   MAIN DASHBOARD
+========================= */
+
 #mainDashboard{
+
     position:fixed;
+
     inset:0;
+
     width:100%;
     height:100%;
+
     padding:18px;
-    overflow-y:auto;
-    overflow-x:hidden;
+
+    overflow:auto;
+
     background:
-        radial-gradient(circle at top right,#27315d 0%,transparent 35%),
-        linear-gradient(135deg,#080a12,#11162b,#080a12);
+
+        radial-gradient(
+            circle at top right,
+            #27315d 0%,
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #080a12,
+            #11162b,
+            #080a12
+        );
 }
 
-/* HEADER */
+
+/* =========================
+   TOP HEADER BOX
+========================= */
+
 .top-header-box{
-    position:sticky;
-    top:0;
-    z-index:1000;
+
+    position:relative;
+
     width:92%;
     max-width:700px;
+
     height:58px;
+
     margin:0 auto;
+
     padding:0 10px 0 18px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     border-radius:17px;
-    background:linear-gradient(145deg,#151a2bed,#11162bea);
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff14,
+            #ffffff06
+        );
+
     border:1px solid #ffffff20;
-    box-shadow:0 8px 30px #0008;
+
+    box-shadow:
+        0 8px 30px #0005;
+
     backdrop-filter:blur(14px);
+
     -webkit-backdrop-filter:blur(14px);
+
+    overflow:hidden;
 }
 
-/* REMOVE TOP LINE */
+
+/* =========================
+   TOP GLOW LINE
+========================= */
+
 .top-header-box::before{
-    display:none;
-}
 
-/* LONG LINE BELOW HEADER */
-.top-header-box::after{
     content:"";
+
     position:absolute;
-    bottom:-2px;
-    left:0;
-    width:100%;
+
+    top:0;
+    left:8%;
+
+    width:84%;
+
     height:2px;
+
     border-radius:20px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #1677ff,
-        #8b5cf6,
-        #00d4ff,
-        #8b5cf6,
-        #1677ff,
-        transparent
-    );
-    box-shadow:0 0 8px #1677ff55;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #1677ff,
+            #8b5cf6,
+            #00d4ff,
+            transparent
+        );
+
+    box-shadow:
+
+        0 0 8px #1677ff,
+        0 0 18px #8b5cf6;
 }
 
-/* LOGO */
-.logo{
+
+/* =========================
+   LOGO
+========================= */
+
+.top-header-box .logo{
+
     font-size:22px;
+
     font-weight:800;
+
     letter-spacing:.3px;
 }
 
-/* HEADER BUTTONS */
+
+/* =========================
+   HEADER RIGHT
+========================= */
+
 .header-right{
+
     display:flex;
+
     align-items:center;
+
     gap:7px;
 }
 
-/* TELEGRAM */
+
+/* =========================
+   TELEGRAM BUTTON
+========================= */
+
 .telegram-btn{
+
     width:36px;
     height:36px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     border-radius:11px;
+
     background:#168de2;
+
     border:1px solid #ffffff25;
+
     color:#fff;
+
     text-decoration:none;
+
     font-size:20px;
-    box-shadow:0 5px 16px #168de255;
+
+    box-shadow:
+        0 5px 16px #168de255;
+
     transition:.2s;
 }
 
+
 .telegram-btn:hover{
+
     transform:scale(1.06);
 }
 
-/* THREE DOT MENU */
+
+/* =========================
+   3 DOT BUTTON
+========================= */
+
 .menu-btn{
+
     width:36px;
     height:36px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     border-radius:11px;
+
     background:#ffffff0b;
+
     border:1px solid #ffffff20;
+
     color:#fff;
+
     font-size:21px;
+
     cursor:pointer;
+
     transition:.2s;
 }
 
+
 .menu-btn:hover{
+
     background:#ffffff18;
 }
 
-/* TITLE */
+
+/* =========================
+   TITLE
+========================= */
+
 .title{
+
     margin-top:25px;
+
     font-size:28px;
+
     font-weight:800;
 }
 
+
+/* =========================
+   SUBTITLE
+========================= */
+
 .subtitle{
+
     margin-top:7px;
+
     color:#aeb5c8;
+
     font-size:14px;
 }
 
-/* APP GRID */
+
+/* =========================
+   APP GRID
+========================= */
+
 .game-grid{
+
     margin-top:26px;
+
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,240px));
+
+    grid-template-columns:
+        repeat(2,minmax(0,240px));
+
     gap:20px;
+
     justify-content:start;
+
     align-items:start;
 }
 
-/* APP CARD */
+
+/* =========================
+   APP CARD
+========================= */
+
 .game-card{
+
     width:100%;
+
     padding:20px;
+
     border-radius:24px;
-    background:linear-gradient(145deg,#ffffff14,#ffffff05);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #ffffff14,
+            #ffffff05
+        );
+
     border:1px solid #ffffff18;
+
     cursor:pointer;
+
     transition:.25s;
-    box-shadow:0 15px 40px #0005;
+
+    box-shadow:
+        0 15px 40px #0005;
 }
 
+
 .game-card:hover{
+
     transform:translateY(-4px);
+
     border-color:#ffffff35;
 }
 
-/* APP ICON */
+
+/* =========================
+   APP ICON
+========================= */
+
 .game-icon{
+
     width:82px;
     height:82px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     margin-bottom:15px;
+
     border-radius:22px;
+
     font-size:48px;
 }
 
-/* LUDO */
+
+/* =========================
+   LUDO ICON
+========================= */
+
 .ludo-icon{
-    background:linear-gradient(145deg,#ff4757,#ff9f43);
-    box-shadow:0 12px 30px #ff475744;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff4757,
+            #ff9f43
+        );
+
+    box-shadow:
+        0 12px 30px #ff475744;
 }
 
-/* CHAT */
+
+/* =========================
+   CHAT ICON
+========================= */
+
 .chat-icon{
-    background:linear-gradient(145deg,#1677ff,#8b5cf6);
-    box-shadow:0 12px 30px #1677ff44;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1677ff,
+            #8b5cf6
+        );
+
+    box-shadow:
+        0 12px 30px #1677ff44;
 }
 
-/* CARD TEXT */
+
+/* =========================
+   CARD TITLE
+========================= */
+
 .game-card h2{
+
     font-size:19px;
+
     margin-bottom:7px;
 }
 
+
+/* =========================
+   CARD DESCRIPTION
+========================= */
+
 .game-card p{
+
     color:#aeb5c8;
+
     font-size:13px;
+
     line-height:1.5;
 }
 
-/* OPEN BUTTON */
+
+/* =========================
+   OPEN BUTTON
+========================= */
+
 .open-btn{
+
     margin-top:15px;
+
     width:100%;
+
     padding:10px;
+
     border:0;
+
     border-radius:12px;
+
     background:#ffffff12;
+
     color:#fff;
+
     font-weight:bold;
+
     cursor:pointer;
+
     transition:.2s;
 }
 
+
 .open-btn:hover{
+
     background:#ffffff20;
 }
 
-/* FULLSCREEN PAGE */
+
+/* =========================
+   FULL SCREEN PAGE
+========================= */
+
 .fullPage{
+
     display:none;
+
     position:fixed;
+
     inset:0;
+
     width:100%;
     height:100%;
+
     background:#000;
+
     z-index:99999;
 }
 
-/* BACK BUTTON */
+
+/* =========================
+   BACK BUTTON
+========================= */
+
 .back-btn{
+
     position:absolute;
+
     top:10px;
     left:10px;
+
     width:32px;
     height:32px;
+
     padding:0;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     border:1px solid #ffffff25;
+
     border-radius:9px;
+
     background:#080b12cc;
+
     color:#fff;
+
     font-size:16px;
+
     cursor:pointer;
+
     z-index:20;
+
     backdrop-filter:blur(8px);
+
     -webkit-backdrop-filter:blur(8px);
-    box-shadow:0 4px 15px #0008;
+
+    box-shadow:
+        0 4px 15px #0008;
 }
 
-/* IFRAME */
+
+/* =========================
+   IFRAME
+========================= */
+
 .fullFrame{
+
     position:absolute;
+
     inset:0;
+
     width:100%;
     height:100%;
+
     border:0;
+
     display:block;
+
     background:#fff;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:520px){
+
     #mainDashboard{
+
         padding:14px;
     }
 
+
     .top-header-box{
+
         width:92%;
+
         height:56px;
+
         border-radius:16px;
     }
 
-    .logo{
+
+    .top-header-box .logo{
+
         font-size:20px;
     }
 
-    .telegram-btn,.menu-btn{
+
+    .telegram-btn,
+    .menu-btn{
+
         width:34px;
         height:34px;
     }
 
+
     .title{
+
         margin-top:23px;
+
         font-size:26px;
     }
 
+
     .subtitle{
+
         font-size:13px;
     }
 
+
     .game-grid{
-        grid-template-columns:repeat(2,minmax(0,1fr));
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
         gap:12px;
     }
 
+
     .game-card{
+
         padding:14px;
+
         border-radius:20px;
     }
 
+
     .game-icon{
+
         width:68px;
         height:68px;
+
         font-size:38px;
+
         border-radius:19px;
     }
 
+
     .game-card h2{
+
         font-size:16px;
     }
 
+
     .game-card p{
+
         font-size:12px;
     }
 
+
     .open-btn{
+
         font-size:11px;
+
         padding:9px;
     }
 }
 
-/* VERY SMALL SCREEN */
+
+/* =========================
+   VERY SMALL SCREEN
+========================= */
+
 @media(max-width:360px){
+
     .game-grid{
+
         gap:8px;
     }
 
+
     .game-card{
+
         padding:11px;
     }
 
+
     .game-card h2{
+
         font-size:14px;
     }
 
+
     .game-card p{
+
         font-size:11px;
     }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- MAIN DASHBOARD -->
+
+<!-- =========================
+     MAIN DASHBOARD
+========================= -->
+
 <div id="mainDashboard">
 
-    <!-- HEADER -->
+
+    <!-- TOP HEADER BOX -->
+
     <div class="top-header-box">
 
-        <div class="logo">ABK Game</div>
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            ABK Hub
+
+        </div>
+
+
+        <!-- RIGHT BUTTONS -->
 
         <div class="header-right">
+
+
+            <!-- TELEGRAM -->
 
             <a
                 class="telegram-btn"
                 href="https://t.me/ABK_Official_Hub"
                 target="_blank"
-                rel="noopener noreferrer"
-                title="ABK Official Hub">✈</a>
+                title="ABK Official Hub">
+
+                ✈
+
+            </a>
+
+
+            <!-- 3 DOT -->
 
             <button
                 class="menu-btn"
-                onclick="showMenu()"
-                type="button">⋮</button>
+                onclick="showMenu()">
+
+                ⋮
+
+            </button>
+
 
         </div>
+
     </div>
 
-    <div class="title">Multi App</div>
 
-    <div class="subtitle">Select an option to continue</div>
+    <!-- TITLE -->
 
-    <!-- APP CARDS -->
+    <div class="title">
+
+        Multi App
+
+    </div>
+
+
+    <!-- SUBTITLE -->
+
+    <div class="subtitle">
+
+        Select an option to continue
+
+    </div>
+
+
+    <!-- =========================
+         APP CARDS
+    ========================= -->
+
     <div class="game-grid">
 
+
         <!-- LUDO -->
-        <div class="game-card" onclick="openLudo()">
 
-            <div class="game-icon ludo-icon">🎲</div>
+        <div
+            class="game-card"
+            onclick="openLudo()">
 
-            <h2>Ludo Game</h2>
 
-            <p>Play Ludo with a smooth full-screen experience.</p>
+            <div class="game-icon ludo-icon">
 
-            <button class="open-btn" type="button">
+                🎲
+
+            </div>
+
+
+            <h2>
+
+                Ludo Game
+
+            </h2>
+
+
+            <p>
+
+                Play Ludo with a smooth
+                full-screen experience.
+
+            </p>
+
+
+            <button
+                class="open-btn"
+                type="button">
+
                 OPEN LUDO →
+
             </button>
 
+
         </div>
+
+
 
         <!-- PRIVATE CHAT -->
-        <div class="game-card" onclick="openChat()">
 
-            <div class="game-icon chat-icon">💬</div>
+        <div
+            class="game-card"
+            onclick="openChat()">
 
-            <h2>Private Chat</h2>
 
-            <p>Chat message, audio call and video call.</p>
+            <div class="game-icon chat-icon">
 
-            <button class="open-btn" type="button">
+                💬
+
+            </div>
+
+
+            <h2>
+
+                Private Chat
+
+            </h2>
+
+
+            <p>
+
+                Chat message, audio call
+                and video call.
+
+            </p>
+
+
+            <button
+                class="open-btn"
+                type="button">
+
                 OPEN CHAT →
+
             </button>
+
 
         </div>
 
+
     </div>
+
 </div>
 
-<!-- LUDO PAGE -->
-<div id="ludoDashboard" class="fullPage">
 
-    <button class="back-btn" onclick="closeLudo()" type="button">←</button>
+
+<!-- =========================
+     LUDO FULL PAGE
+========================= -->
+
+<div
+    id="ludoDashboard"
+    class="fullPage">
+
+
+    <button
+        class="back-btn"
+        onclick="closeLudo()">
+
+        ←
+
+    </button>
+
 
     <iframe
         id="ludoFrame"
@@ -437,14 +881,32 @@ html,body{
         src="about:blank"
         title="ABK Ludo"
         allow="fullscreen; autoplay"
-        allowfullscreen></iframe>
+        allowfullscreen>
+
+    </iframe>
+
 
 </div>
 
-<!-- CHAT PAGE -->
-<div id="chatDashboard" class="fullPage">
 
-    <button class="back-btn" onclick="closeChat()" type="button">←</button>
+
+<!-- =========================
+     CHAT FULL PAGE
+========================= -->
+
+<div
+    id="chatDashboard"
+    class="fullPage">
+
+
+    <button
+        class="back-btn"
+        onclick="closeChat()">
+
+        ←
+
+    </button>
+
 
     <iframe
         id="chatFrame"
@@ -452,46 +914,142 @@ html,body{
         src="about:blank"
         title="Private Chat"
         allow="camera; microphone; fullscreen"
-        allowfullscreen></iframe>
+        allowfullscreen>
+
+    </iframe>
+
 
 </div>
 
+
+
 <script>
-const LUDO_URL = "https://zoneam2023-dot-github.io/Abkludo/";
-const CHAT_TEST_URL = "https://example.com/";
+
+/* =========================
+   LINKS
+========================= */
+
+const LUDO_URL =
+    "https://zoneam2023-dot.github.io/Abkludo/";
+
+
+const CHAT_TEST_URL =
+    "https://example.com/";
+
+
+
+/* =========================
+   OPEN LUDO
+========================= */
 
 function openLudo(){
-    document.getElementById("mainDashboard").style.display="none";
-    document.getElementById("ludoDashboard").style.display="block";
-    document.getElementById("ludoFrame").src=LUDO_URL;
+
+    document
+        .getElementById("mainDashboard")
+        .style.display = "none";
+
+
+    document
+        .getElementById("ludoDashboard")
+        .style.display = "block";
+
+
+    document
+        .getElementById("ludoFrame")
+        .src = LUDO_URL;
+
 }
+
+
+
+/* =========================
+   CLOSE LUDO
+========================= */
 
 function closeLudo(){
-    document.getElementById("ludoFrame").src="about:blank";
-    document.getElementById("ludoDashboard").style.display="none";
-    document.getElementById("mainDashboard").style.display="block";
+
+    document
+        .getElementById("ludoFrame")
+        .src = "about:blank";
+
+
+    document
+        .getElementById("ludoDashboard")
+        .style.display = "none";
+
+
+    document
+        .getElementById("mainDashboard")
+        .style.display = "block";
+
 }
+
+
+
+/* =========================
+   OPEN CHAT
+========================= */
 
 function openChat(){
-    document.getElementById("mainDashboard").style.display="none";
-    document.getElementById("chatDashboard").style.display="block";
-    document.getElementById("chatFrame").src=CHAT_TEST_URL;
+
+    document
+        .getElementById("mainDashboard")
+        .style.display = "none";
+
+
+    document
+        .getElementById("chatDashboard")
+        .style.display = "block";
+
+
+    document
+        .getElementById("chatFrame")
+        .src = CHAT_TEST_URL;
+
 }
+
+
+
+/* =========================
+   CLOSE CHAT
+========================= */
 
 function closeChat(){
-    document.getElementById("chatFrame").src="about:blank";
-    document.getElementById("chatDashboard").style.display="none";
-    document.getElementById("mainDashboard").style.display="block";
+
+    document
+        .getElementById("chatFrame")
+        .src = "about:blank";
+
+
+    document
+        .getElementById("chatDashboard")
+        .style.display = "none";
+
+
+    document
+        .getElementById("mainDashboard")
+        .style.display = "block";
+
 }
 
+
+
+/* =========================
+   3 DOT MENU
+========================= */
+
 function showMenu(){
+
     alert(
-        "ABK Game\n\n"+
-        "Multi App Game Hub\n"+
+        "ABK Hub\n\n" +
+        "Multi App Hub\n" +
         "More apps coming soon..."
     );
+
 }
+
 </script>
+
 
 </body>
 </html>
