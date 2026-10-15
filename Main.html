@@ -1,4 +1,4 @@
-;<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +8,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif;}
 body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;}
 
-/* ===== JOIN SCREEN ===== */
 .join-screen{
   background:linear-gradient(145deg,#12122a,#1a1a3e);
   border:1px solid rgba(255,255,255,0.08);
@@ -47,7 +46,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
   letter-spacing:3px;color:#a78bfa;margin-bottom:14px;display:none;
 }
 
-/* ===== CHAT PAGE ===== */
 .chat-page{
   display:none;width:100%;max-width:500px;height:95vh;max-height:750px;
   background:#0d0d22;border-radius:20px;overflow:hidden;
@@ -57,7 +55,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
 }
 .chat-page.active{display:flex;}
 
-/* -- Top Bar -- */
 .top-bar{
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 20px;
@@ -84,7 +81,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
 .call-btn.video{background:rgba(108,92,231,0.15);color:#a78bfa;}
 .call-btn.video:hover{background:#6c5ce7;color:#fff;transform:scale(1.1);}
 
-/* -- Messages -- */
 .messages-area{
   flex:1;overflow-y:auto;padding:16px;
   display:flex;flex-direction:column;gap:8px;
@@ -104,12 +100,12 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
   border-bottom-left-radius:4px;
 }
 .msg .m-time{font-size:10px;opacity:.6;margin-top:4px;display:block;text-align:right;}
+.msg .m-name{font-size:10px;opacity:.8;font-weight:700;margin-bottom:3px;display:block;}
 .msg.sys{
   align-self:center;background:rgba(255,255,255,0.04);
   color:#636e8a;font-size:12px;padding:6px 14px;border-radius:20px;
 }
 
-/* -- Input Bar -- */
 .input-bar{
   display:flex;gap:8px;padding:12px 16px;
   background:#12122e;border-top:1px solid rgba(255,255,255,0.06);
@@ -127,14 +123,12 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
 }
 .input-bar button:hover{transform:scale(1.08);}
 
-/* ===== CALL OVERLAY ===== */
 .call-overlay{
   display:none;position:fixed;top:0;left:0;width:100%;height:100%;
   z-index:999;flex-direction:column;align-items:center;justify-content:center;
 }
 .call-overlay.active{display:flex;}
 
-/* Audio Call */
 .audio-overlay{background:linear-gradient(180deg,#0a0a2e 0%,#1a0a3e 100%);}
 .audio-overlay .caller-avatar{
   width:120px;height:120px;border-radius:50%;
@@ -152,7 +146,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
 .audio-overlay .call-type{color:#00cec9;font-size:14px;margin-bottom:6px;}
 .audio-overlay .call-timer{font-size:32px;font-weight:300;color:#a78bfa;margin-bottom:40px;font-family:monospace;}
 
-/* Wave Animation */
 .wave-container{display:flex;gap:4px;margin-bottom:40px;height:40px;align-items:center;}
 .wave-bar{
   width:4px;border-radius:4px;background:#6c5ce7;
@@ -180,7 +173,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
 .c-btn.end-call{background:#ef4444;color:#fff;}
 .c-btn.end-call:hover{background:#dc2626;box-shadow:0 0 30px rgba(239,68,68,0.5);}
 
-/* Video Call */
 .video-overlay{background:#000;}
 .video-overlay .remote-video{
   width:100%;height:100%;object-fit:cover;
@@ -236,8 +228,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
 
 <!-- ========== CHAT PAGE ========== -->
 <div class="chat-page" id="chatPage">
-
-  <!-- Top Bar -->
   <div class="top-bar">
     <div class="user-info">
       <div class="avatar" id="avatarLetter">U</div>
@@ -252,12 +242,10 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
     </div>
   </div>
 
-  <!-- Messages -->
   <div class="messages-area" id="msgArea">
     <div class="msg sys">🔐 Room connected successfully</div>
   </div>
 
-  <!-- Input -->
   <div class="input-bar">
     <input id="chatInput" placeholder="Message likhein..." onkeypress="if(event.key==='Enter')sendMsg()">
     <button onclick="sendMsg()">➤</button>
@@ -277,7 +265,6 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
   </div>
   <div class="call-controls">
     <button class="c-btn mute" id="aMuteBtn" onclick="toggleAudioMute()">🎤</button>
-    <button class="c-btn speaker" onclick="this.classList.toggle('off')">🔊</button>
     <button class="c-btn end-call" onclick="endAudioCall()">📞</button>
   </div>
 </div>
@@ -297,11 +284,27 @@ body{background:#0a0a1a;color:#fff;min-height:100vh;display:flex;align-items:cen
   </div>
 </div>
 
-<script>
-let userName='', token='', audioStream=null, videoStream=null;
-let audioTimerInt=null, videoTimerInt=null, aSec=0, vSec=0;
+<!-- ===== Firebase SDK ===== -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
-// ===== TOKEN =====
+<script>
+// ===== FIREBASE CONFIG =====
+const firebaseConfig = {
+  databaseURL: "https://shanu-90f4c-default-rtdb.firebaseio.com"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// ===== STATE =====
+let userName='', token='', myId='', partnerId='';
+let pc=null, localStream=null, remoteStream=null;
+let audioTimerInt=null, videoTimerInt=null, aSec=0, vSec=0;
+let currentCallType='';  // 'audio' or 'video'
+let isCaller=false;
+let chatRef=null, sigRef=null, presenceRef=null;
+
+// ===== TOKEN GENERATE =====
 function genToken(){
   token = Math.random().toString(36).substring(2,6).toUpperCase() + Math.floor(1000+Math.random()*9000);
   document.getElementById('tokenInput').value = token;
@@ -310,117 +313,366 @@ function genToken(){
 }
 
 // ===== JOIN =====
-function joinNow(){
-  userName = document.getElementById('nameInput').value.trim()||'Guest';
-  token = document.getElementById('tokenInput').value.trim();
-  if(!token){alert('Token ID daalein!');return;}
+async function joinNow(){
+  userName = document.getElementById('nameInput').value.trim() || 'Guest';
+  token = document.getElementById('tokenInput').value.trim().toUpperCase();
+  if(!token){ alert('Token ID daalein!'); return; }
 
+  myId = userName + '_' + Math.random().toString(36).substring(2,8);
+
+  // UI switch
   document.getElementById('joinScreen').style.display='none';
-  const cp = document.getElementById('chatPage');
-  cp.classList.add('active');
-
+  document.getElementById('chatPage').classList.add('active');
   document.getElementById('displayName').textContent = userName;
   document.getElementById('avatarLetter').textContent = userName.charAt(0).toUpperCase();
   document.getElementById('roomToken').textContent = token;
 
-  addSys('👤 '+userName+' room me aaye — Token: '+token);
+  // Firebase refs
+  chatRef     = db.ref('rooms/' + token + '/messages');
+  sigRef      = db.ref('rooms/' + token + '/signal');
+  presenceRef = db.ref('rooms/' + token + '/users/' + myId);
+
+  // Mark presence
+  await presenceRef.set({ name: userName, joined: Date.now() });
+  presenceRef.onDisconnect().remove();
+
+  addSys('✅ Room me connected — Token: ' + token);
+  addSys('👉 Dusre banda same token se join kare');
+
+  // ===== CHAT LISTENER =====
+  chatRef.limitToLast(100).on('child_added', snap => {
+    const m = snap.val();
+    if(!m) return;
+    if(m.senderId === myId) return;  // apna message skip
+    addMsg('received', m.text, m.name, m.time);
+  });
+
+  // ===== PEER DISCOVERY =====
+  db.ref('rooms/' + token + '/users').on('value', snap => {
+    const users = snap.val() || {};
+    const others = Object.keys(users).filter(k => k !== myId);
+    if(others.length > 0){
+      partnerId = others[0];  // pehla dusra user
+      addSys('👥 ' + users[partnerId].name + ' room me hai');
+    } else {
+      partnerId = '';
+    }
+  });
+
+  // ===== SIGNALING LISTENER =====
+  sigRef.on('value', async snap => {
+    const data = snap.val();
+    if(!data) return;
+
+    // Incoming call
+    if(data.type === 'offer' && data.to === myId && !pc){
+      const accept = confirm('📞 ' + (data.fromName||'User') + ' call kar raha hai. Accept?');
+      if(accept){
+        await handleOffer(data);
+      } else {
+        sigRef.update({ type:'reject', to:data.from, from:myId });
+      }
+    }
+
+    // Answer received (caller side)
+    if(data.type === 'answer' && data.to === myId && pc){
+      await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+    }
+
+    // ICE candidate
+    if(data.type === 'ice' && data.to === myId && pc){
+      try{ await pc.addIceCandidate(new RTCIceCandidate(data.candidate)); }catch(e){}
+    }
+
+    // Reject
+    if(data.type === 'reject' && data.to === myId){
+      addSys('❌ Call reject ho gayi');
+      cleanupCall();
+    }
+
+    // End
+    if(data.type === 'end' && data.to === myId){
+      addSys('📴 Dusre ne call khatam ki');
+      cleanupCall();
+    }
+  });
+
+  window.addEventListener('beforeunload', () => {
+    presenceRef.remove();
+    if(pc) sigRef.update({ type:'end', to:partnerId, from:myId });
+  });
 }
 
 // ===== CHAT =====
 function sendMsg(){
   const inp = document.getElementById('chatInput');
-  const t = inp.value.trim(); if(!t)return;
-  addMsg('sent',t);
-  inp.value='';
-  setTimeout(()=>addMsg('received','Message mil gaya ✓'),800);
+  const t = inp.value.trim(); if(!t) return;
+
+  const msg = {
+    senderId: myId,
+    name: userName,
+    text: t,
+    time: Date.now()
+  };
+  chatRef.push(msg);
+  addMsg('sent', t, userName, msg.time);
+  inp.value = '';
 }
-function addMsg(type,text){
-  const area=document.getElementById('msgArea');
-  const d=document.createElement('div');
-  d.className='msg '+type;
-  const time=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  d.innerHTML=text+'<span class="m-time">'+time+'</span>';
-  area.appendChild(d); area.scrollTop=area.scrollHeight;
+
+function addMsg(type, text, name, ts){
+  const area = document.getElementById('msgArea');
+  const d = document.createElement('div');
+  d.className = 'msg ' + type;
+  const time = new Date(ts || Date.now()).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  const nameTag = (type === 'received' && name) ? '<span class="m-name">'+escapeHtml(name)+'</span>' : '';
+  d.innerHTML = nameTag + escapeHtml(text) + '<span class="m-time">'+time+'</span>';
+  area.appendChild(d);
+  area.scrollTop = area.scrollHeight;
 }
+
 function addSys(text){
-  const area=document.getElementById('msgArea');
-  const d=document.createElement('div');
-  d.className='msg sys'; d.textContent=text;
-  area.appendChild(d); area.scrollTop=area.scrollHeight;
+  const area = document.getElementById('msgArea');
+  const d = document.createElement('div');
+  d.className = 'msg sys'; d.textContent = text;
+  area.appendChild(d); area.scrollTop = area.scrollHeight;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ===== WEBRTC SETUP =====
+function createPeerConnection(){
+  const config = {
+    iceServers: [
+      { urls: 'stun:stun.l.google.com:19302' },
+      { urls: 'stun:stun1.l.google.com:19302' },
+      { urls: 'stun:global.stun.twilio.com:3478' }
+    ]
+  };
+  pc = new RTCPeerConnection(config);
+
+  // Send ICE candidates
+  pc.onicecandidate = (e) => {
+    if(e.candidate){
+      sigRef.update({
+        type: 'ice',
+        from: myId,
+        to: partnerId,
+        candidate: e.candidate.toJSON()
+      });
+    }
+  };
+
+  // Remote stream aaya
+  pc.ontrack = (e) => {
+    remoteStream = e.streams[0];
+    if(currentCallType === 'video'){
+      document.getElementById('remoteVideo').srcObject = remoteStream;
+    } else {
+      // audio call — hidden audio element
+      let audioEl = document.getElementById('remoteAudio');
+      if(!audioEl){
+        audioEl = document.createElement('audio');
+        audioEl.id = 'remoteAudio';
+        audioEl.autoplay = true;
+        document.body.appendChild(audioEl);
+      }
+      audioEl.srcObject = remoteStream;
+    }
+  };
+
+  pc.onconnectionstatechange = () => {
+    if(pc.connectionState === 'disconnected' || pc.connectionState === 'failed'){
+      addSys('⚠️ Connection lost');
+      cleanupCall();
+    }
+  };
+
+  return pc;
 }
 
 // ===== AUDIO CALL =====
 async function startAudioCall(){
-  try{
-    audioStream = await navigator.mediaDevices.getUserMedia({audio:true});
-  }catch(e){alert('Mic access nahi mila: '+e.message);return;}
+  if(!partnerId){ alert('Dusra banda room me nahi hai!'); return; }
+  if(pc){ alert('Pehle se call chal rahi hai'); return; }
 
-  document.getElementById('audioAvatar').textContent=userName.charAt(0).toUpperCase();
-  document.getElementById('audioName').textContent=userName;
+  isCaller = true;
+  currentCallType = 'audio';
+
+  try{
+    localStream = await navigator.mediaDevices.getUserMedia({ audio:true });
+  }catch(e){ alert('Mic access nahi mila: ' + e.message); return; }
+
+  document.getElementById('audioAvatar').textContent = userName.charAt(0).toUpperCase();
+  document.getElementById('audioName').textContent = userName;
   document.getElementById('audioOverlay').classList.add('active');
-  aSec=0; updateAudioTimer();
-  audioTimerInt=setInterval(()=>{aSec++;updateAudioTimer();},1000);
-  addSys('📞 Audio call start hui');
-}
-function updateAudioTimer(){
-  const m=String(Math.floor(aSec/60)).padStart(2,'0');
-  const s=String(aSec%60).padStart(2,'0');
-  document.getElementById('audioTimer').textContent=m+':'+s;
-}
-function toggleAudioMute(){
-  if(!audioStream)return;
-  const t=audioStream.getAudioTracks()[0];
-  t.enabled=!t.enabled;
-  const b=document.getElementById('aMuteBtn');
-  b.textContent=t.enabled?'🎤':'🔇';
-  b.classList.toggle('off',!t.enabled);
-}
-function endAudioCall(){
-  if(audioStream)audioStream.getTracks().forEach(t=>t.stop());
-  clearInterval(audioTimerInt);
-  document.getElementById('audioOverlay').classList.remove('active');
-  addSys('📞 Audio call khatam — '+document.getElementById('audioTimer').textContent);
+  aSec = 0; updateAudioTimer();
+  audioTimerInt = setInterval(() => { aSec++; updateAudioTimer(); }, 1000);
+
+  createPeerConnection();
+  localStream.getTracks().forEach(t => pc.addTrack(t, localStream));
+
+  const offer = await pc.createOffer();
+  await pc.setLocalDescription(offer);
+
+  sigRef.set({
+    type: 'offer',
+    callType: 'audio',
+    from: myId,
+    fromName: userName,
+    to: partnerId,
+    sdp: offer
+  });
+
+  addSys('📞 Audio call ringing...');
 }
 
 // ===== VIDEO CALL =====
 async function startVideoCall(){
-  try{
-    videoStream = await navigator.mediaDevices.getUserMedia({video:true,audio:true});
-  }catch(e){alert('Camera/Mic access nahi mila: '+e.message);return;}
+  if(!partnerId){ alert('Dusra banda room me nahi hai!'); return; }
+  if(pc){ alert('Pehle se call chal rahi hai'); return; }
 
-  document.getElementById('localVideo').srcObject=videoStream;
-  document.getElementById('videoName').textContent=userName;
+  isCaller = true;
+  currentCallType = 'video';
+
+  try{
+    localStream = await navigator.mediaDevices.getUserMedia({ video:true, audio:true });
+  }catch(e){ alert('Camera/Mic access nahi mila: ' + e.message); return; }
+
+  document.getElementById('localVideo').srcObject = localStream;
+  document.getElementById('videoName').textContent = userName;
   document.getElementById('videoOverlay').classList.add('active');
-  vSec=0; updateVideoTimer();
-  videoTimerInt=setInterval(()=>{vSec++;updateVideoTimer();},1000);
-  addSys('📷 Video call start hui');
+  vSec = 0; updateVideoTimer();
+  videoTimerInt = setInterval(() => { vSec++; updateVideoTimer(); }, 1000);
+
+  createPeerConnection();
+  localStream.getTracks().forEach(t => pc.addTrack(t, localStream));
+
+  const offer = await pc.createOffer();
+  await pc.setLocalDescription(offer);
+
+  sigRef.set({
+    type: 'offer',
+    callType: 'video',
+    from: myId,
+    fromName: userName,
+    to: partnerId,
+    sdp: offer
+  });
+
+  addSys('📷 Video call ringing...');
+}
+
+// ===== HANDLE INCOMING OFFER =====
+async function handleOffer(data){
+  isCaller = false;
+  currentCallType = data.callType || 'audio';
+
+  try{
+    localStream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: currentCallType === 'video'
+    });
+  }catch(e){ alert('Permission error: ' + e.message); return; }
+
+  if(currentCallType === 'video'){
+    document.getElementById('localVideo').srcObject = localStream;
+    document.getElementById('videoName').textContent = userName;
+    document.getElementById('videoOverlay').classList.add('active');
+    vSec = 0; updateVideoTimer();
+    videoTimerInt = setInterval(() => { vSec++; updateVideoTimer(); }, 1000);
+  } else {
+    document.getElementById('audioAvatar').textContent = userName.charAt(0).toUpperCase();
+    document.getElementById('audioName').textContent = userName;
+    document.getElementById('audioOverlay').classList.add('active');
+    aSec = 0; updateAudioTimer();
+    audioTimerInt = setInterval(() => { aSec++; updateAudioTimer(); }, 1000);
+  }
+
+  createPeerConnection();
+  localStream.getTracks().forEach(t => pc.addTrack(t, localStream));
+
+  await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+  const answer = await pc.createAnswer();
+  await pc.setLocalDescription(answer);
+
+  sigRef.set({
+    type: 'answer',
+    from: myId,
+    to: data.from,
+    sdp: answer
+  });
+
+  addSys('✅ Call connected');
+}
+
+// ===== TIMER =====
+function updateAudioTimer(){
+  const m = String(Math.floor(aSec/60)).padStart(2,'0');
+  const s = String(aSec%60).padStart(2,'0');
+  document.getElementById('audioTimer').textContent = m + ':' + s;
 }
 function updateVideoTimer(){
-  const m=String(Math.floor(vSec/60)).padStart(2,'0');
-  const s=String(vSec%60).padStart(2,'0');
-  document.getElementById('videoTimer').textContent=m+':'+s;
+  const m = String(Math.floor(vSec/60)).padStart(2,'0');
+  const s = String(vSec%60).padStart(2,'0');
+  document.getElementById('videoTimer').textContent = m + ':' + s;
+}
+
+// ===== CONTROLS =====
+function toggleAudioMute(){
+  if(!localStream) return;
+  const t = localStream.getAudioTracks()[0];
+  t.enabled = !t.enabled;
+  const b = document.getElementById('aMuteBtn');
+  b.textContent = t.enabled ? '🎤' : '🔇';
+  b.classList.toggle('off', !t.enabled);
 }
 function toggleVMic(){
-  if(!videoStream)return;
-  const t=videoStream.getAudioTracks()[0];
-  t.enabled=!t.enabled;
-  const b=document.getElementById('vMicBtn');
-  b.textContent=t.enabled?'🎤':'🔇';
-  b.classList.toggle('off',!t.enabled);
+  if(!localStream) return;
+  const t = localStream.getAudioTracks()[0];
+  if(!t) return;
+  t.enabled = !t.enabled;
+  const b = document.getElementById('vMicBtn');
+  b.textContent = t.enabled ? '🎤' : '🔇';
+  b.classList.toggle('off', !t.enabled);
 }
 function toggleVCam(){
-  if(!videoStream)return;
-  const t=videoStream.getVideoTracks()[0];
-  t.enabled=!t.enabled;
-  const b=document.getElementById('vCamBtn');
-  b.textContent=t.enabled?'📹':'🚫';
-  b.classList.toggle('off',!t.enabled);
+  if(!localStream) return;
+  const t = localStream.getVideoTracks()[0];
+  if(!t) return;
+  t.enabled = !t.enabled;
+  const b = document.getElementById('vCamBtn');
+  b.textContent = t.enabled ? '📹' : '🚫';
+  b.classList.toggle('off', !t.enabled);
+}
+
+// ===== END CALL =====
+function endAudioCall(){
+  sigRef.update({ type:'end', from:myId, to:partnerId });
+  addSys('📞 Audio call khatam — ' + document.getElementById('audioTimer').textContent);
+  cleanupCall();
 }
 function endVideoCall(){
-  if(videoStream)videoStream.getTracks().forEach(t=>t.stop());
+  sigRef.update({ type:'end', from:myId, to:partnerId });
+  addSys('📷 Video call khatam — ' + document.getElementById('videoTimer').textContent);
+  cleanupCall();
+}
+
+function cleanupCall(){
+  if(localStream){ localStream.getTracks().forEach(t => t.stop()); localStream = null; }
+  if(pc){ pc.close(); pc = null; }
+  remoteStream = null;
+  clearInterval(audioTimerInt);
   clearInterval(videoTimerInt);
+  document.getElementById('audioOverlay').classList.remove('active');
   document.getElementById('videoOverlay').classList.remove('active');
-  addSys('📷 Video call khatam — '+document.getElementById('videoTimer').textContent);
+  document.getElementById('localVideo').srcObject = null;
+  document.getElementById('remoteVideo').srcObject = null;
+  const ra = document.getElementById('remoteAudio');
+  if(ra){ ra.srcObject = null; ra.remove(); }
+  currentCallType = '';
+  sigRef.remove().catch(()=>{});
 }
 </script>
 </body>
