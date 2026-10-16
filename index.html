@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ABK Hub</title>
+<title>ABK Game</title>
 
 <style>
 
@@ -120,39 +120,18 @@ body{
 
 
 /* =========================
-   TOP GLOW LINE
+   HEADER LEFT (LOGO + CREDIT)
 ========================= */
 
-.top-header-box::before{
+.header-left{
 
-    content:"";
+    display:flex;
 
-    position:absolute;
+    align-items:center;
 
-    top:0;
-    left:8%;
+    gap:8px;
 
-    width:84%;
-
-    height:2px;
-
-    border-radius:20px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            #1677ff,
-            #8b5cf6,
-            #00d4ff,
-            transparent
-        );
-
-    box-shadow:
-
-        0 0 8px #1677ff,
-        0 0 18px #8b5cf6;
+    min-width:0;
 }
 
 
@@ -167,6 +146,42 @@ body{
     font-weight:800;
 
     letter-spacing:.3px;
+
+    white-space:nowrap;
+}
+
+
+/* =========================
+   DEVELOPER CREDIT
+========================= */
+
+.developer-credit{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+    white-space:nowrap;
+
+    letter-spacing:.3px;
+
+    padding:4px 9px;
+
+    border-radius:8px;
+
+    background:#512DA8;
+
+    border:1px solid #ffffff35;
+}
+
+
+.developer-credit:hover{
+
+    opacity:.85;
 }
 
 
@@ -181,6 +196,8 @@ body{
     align-items:center;
 
     gap:7px;
+
+    flex-shrink:0;
 }
 
 
@@ -214,6 +231,17 @@ body{
         0 5px 16px #168de255;
 
     transition:.2s;
+}
+
+
+.telegram-btn svg{
+
+    width:20px;
+    height:20px;
+
+    display:block;
+
+    fill:#ffffff;
 }
 
 
@@ -487,50 +515,6 @@ body{
 
 
 /* =========================
-   BACK BUTTON
-========================= */
-
-.back-btn{
-
-    position:absolute;
-
-    top:10px;
-    left:10px;
-
-    width:32px;
-    height:32px;
-
-    padding:0;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid #ffffff25;
-
-    border-radius:9px;
-
-    background:#080b12cc;
-
-    color:#fff;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-    z-index:20;
-
-    backdrop-filter:blur(8px);
-
-    -webkit-backdrop-filter:blur(8px);
-
-    box-shadow:
-        0 4px 15px #0008;
-}
-
-
-/* =========================
    IFRAME
 ========================= */
 
@@ -565,25 +549,44 @@ body{
 
     .top-header-box{
 
-        width:92%;
+        width:100%;
 
-        height:56px;
+        height:54px;
 
-        border-radius:16px;
+        border-radius:15px;
+
+        padding:0 8px 0 12px;
     }
 
 
     .top-header-box .logo{
 
-        font-size:20px;
+        font-size:16px;
+    }
+
+
+    .developer-credit{
+
+        font-size:10px;
+
+        padding:3px 7px;
     }
 
 
     .telegram-btn,
     .menu-btn{
 
-        width:34px;
-        height:34px;
+        width:32px;
+        height:32px;
+
+        font-size:17px;
+    }
+
+
+    .telegram-btn svg{
+
+        width:18px;
+        height:18px;
     }
 
 
@@ -656,6 +659,37 @@ body{
 
 @media(max-width:360px){
 
+    .top-header-box .logo{
+
+        font-size:14px;
+    }
+
+
+    .developer-credit{
+
+        font-size:9px;
+
+        padding:2px 6px;
+    }
+
+
+    .telegram-btn,
+    .menu-btn{
+
+        width:30px;
+        height:30px;
+
+        font-size:15px;
+    }
+
+
+    .telegram-btn svg{
+
+        width:16px;
+        height:16px;
+    }
+
+
     .game-grid{
 
         gap:8px;
@@ -700,21 +734,42 @@ body{
     <div class="top-header-box">
 
 
-        <!-- LOGO -->
+        <!-- LEFT: LOGO + DEVELOPER CREDIT -->
 
-        <div class="logo">
+        <div class="header-left">
 
-            ABK Hub
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                ABK Game
+
+            </div>
+
+
+            <!-- DEVELOPER CREDIT -->
+
+            <a
+                class="developer-credit"
+                href="https://t.me/ABKshanuBot"
+                target="_blank"
+                title="ABK Shanu Bot">
+
+                ★ Developed: Shanu ★
+
+            </a>
+
 
         </div>
 
 
-        <!-- RIGHT BUTTONS -->
+        <!-- RIGHT: TELEGRAM + 3 DOT -->
 
         <div class="header-right">
 
 
-            <!-- TELEGRAM -->
+            <!-- TELEGRAM (REAL ICON) -->
 
             <a
                 class="telegram-btn"
@@ -722,7 +777,13 @@ body{
                 target="_blank"
                 title="ABK Official Hub">
 
-                ✈
+                <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+
+                    <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+
+                </svg>
 
             </a>
 
@@ -810,7 +871,7 @@ body{
 
 
 
-        <!-- PRIVATE CHAT -->
+        <!-- PRIVATE MEET -->
 
         <div
             class="game-card"
@@ -826,7 +887,7 @@ body{
 
             <h2>
 
-                Private Chat
+                Private Meet
 
             </h2>
 
@@ -843,7 +904,7 @@ body{
                 class="open-btn"
                 type="button">
 
-                OPEN CHAT →
+                OPEN MEET →
 
             </button>
 
@@ -866,15 +927,6 @@ body{
     class="fullPage">
 
 
-    <button
-        class="back-btn"
-        onclick="closeLudo()">
-
-        ←
-
-    </button>
-
-
     <iframe
         id="ludoFrame"
         class="fullFrame"
@@ -891,7 +943,7 @@ body{
 
 
 <!-- =========================
-     CHAT FULL PAGE
+     PRIVATE MEET FULL PAGE
 ========================= -->
 
 <div
@@ -899,20 +951,11 @@ body{
     class="fullPage">
 
 
-    <button
-        class="back-btn"
-        onclick="closeChat()">
-
-        ←
-
-    </button>
-
-
     <iframe
         id="chatFrame"
         class="fullFrame"
         src="about:blank"
-        title="Private Chat"
+        title="Private Meet"
         allow="camera; microphone; fullscreen"
         allowfullscreen>
 
@@ -930,11 +973,11 @@ body{
 ========================= */
 
 const LUDO_URL =
-    "https://zoneam2023-dot.github.io/Abkludo/";
+    "https://shanu9534.github.io/ABK-Game/LudoGame.html";
 
 
 const CHAT_TEST_URL =
-    "https://example.com/";
+    "https://shanu9534.github.io/ABK-Game/Privatemeet.html";
 
 
 
@@ -957,6 +1000,17 @@ function openLudo(){
     document
         .getElementById("ludoFrame")
         .src = LUDO_URL;
+
+
+    /* Push history state so mobile
+       back button returns to dashboard
+       instead of blank page */
+
+    history.pushState(
+        { view: "ludo" },
+        "",
+        "#ludo"
+    );
 
 }
 
@@ -987,7 +1041,7 @@ function closeLudo(){
 
 
 /* =========================
-   OPEN CHAT
+   OPEN MEET
 ========================= */
 
 function openChat(){
@@ -1006,12 +1060,23 @@ function openChat(){
         .getElementById("chatFrame")
         .src = CHAT_TEST_URL;
 
+
+    /* Push history state so mobile
+       back button returns to dashboard
+       instead of blank page */
+
+    history.pushState(
+        { view: "chat" },
+        "",
+        "#chat"
+    );
+
 }
 
 
 
 /* =========================
-   CLOSE CHAT
+   CLOSE MEET
 ========================= */
 
 function closeChat(){
@@ -1035,13 +1100,74 @@ function closeChat(){
 
 
 /* =========================
+   HANDLE BACK BUTTON
+   (mobile / browser back)
+========================= */
+
+window.addEventListener(
+
+    "popstate",
+
+    function(){
+
+
+        /* If Ludo is open — close it and
+           show dashboard */
+
+        if(
+
+            document
+                .getElementById("ludoDashboard")
+                .style.display === "block"
+
+        ){
+
+            closeLudo();
+
+            return;
+
+        }
+
+
+        /* If Meet is open — close it and
+           show dashboard */
+
+        if(
+
+            document
+                .getElementById("chatDashboard")
+                .style.display === "block"
+
+        ){
+
+            closeChat();
+
+            return;
+
+        }
+
+
+        /* Otherwise, make sure dashboard is visible
+           (never leave a blank screen) */
+
+        document
+            .getElementById("mainDashboard")
+            .style.display = "block";
+
+    }
+
+);
+
+
+
+/* =========================
    3 DOT MENU
 ========================= */
 
 function showMenu(){
 
     alert(
-        "ABK Hub\n\n" +
+        "ABK Game\n\n" +
         "Multi App Hub\n" +
         "More apps coming soon..."
     );
